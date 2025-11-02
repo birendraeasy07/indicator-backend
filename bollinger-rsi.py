@@ -141,7 +141,7 @@ class BollingerRSI:
         except Exception as e:
             print(f"Error in initializing fyers {e}")
         
-    def execute(self,profit_per=2.5, interval = 'D',start_date="2025-01-01",time_dalta=None,end_date=None):
+    def execute(self,profit_per, interval,start_date,time_dalta=None,end_date=None):
         df_result = pd.DataFrame()
         for script in NIFTY50:
             df = None
@@ -168,11 +168,11 @@ class BollingerRSI:
             
             df_profit = self.calculate_profits(df)
             df_result = pd.concat([df_result,df_profit],axis=0)
-        df_result = df_result[df_result['sell_at']!=0]
+        # df_result = df_result[df_result['sell_at']!=0]
         df_result.to_csv("BollingerRSI.csv")
 
     
 bollinger_rsi = BollingerRSI()
 auth_url = bollinger_rsi.get_auth_url()
 bollinger_rsi.setup(auth_url)
-bollinger_rsi.execute(profit_per=4,interval = 'D',start_date="2025-02-03",time_dalta=None,end_date=None)
+bollinger_rsi.execute(profit_per=5,interval = 'D',start_date="2025-02-03")
