@@ -9,9 +9,9 @@ if COMPLETED:
             "BHARTIARTL","CIPLA","COALINDIA","DRREDDY","EICHERMOT","GRASIM","HCLTECH","HDFCBANK","HDFCLIFE","HEROMOTOCO",\
             "HINDALCO","HINDUNILVR","ICICIBANK","ITC","INDUSINDBK","INFY","JSWSTEEL","JIOFIN","KOTAKBANK","LT","M&M",\
             "MARUTI","NTPC","NESTLEIND","ONGC","POWERGRID","RELIANCE","SBILIFE","SHRIRAMFIN","SBIN","SUNPHARMA","TCS",\
-            "TATACONSUM","TATAMOTORS","TATASTEEL","TECHM","TITAN","TRENT","ULTRACEMCO","WIPRO","ZOMATO"]
+            "TATACONSUM","TATASTEEL","TECHM","TITAN","TRENT","ULTRACEMCO","WIPRO"]
 else:
-    NIFTY50=["HINDALCO","HINDALCO"]
+    NIFTY50=["HINDALCO","ADANIENT","ASIANPAINT"]
 class BollingerRSI:
     fyers = None
     def __init__(self):
@@ -168,7 +168,8 @@ class BollingerRSI:
             
             df_profit = self.calculate_profits(df)
             df_result = pd.concat([df_result,df_profit],axis=0)
-            df_result.to_csv("BollingerRSI.csv")
+        df_result = df_result[df_result['sell_at']!=0]
+        df_result.to_csv("BollingerRSI.csv")
 
     
 bollinger_rsi = BollingerRSI()
